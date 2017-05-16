@@ -26,6 +26,17 @@ module Kugellager(durchmesser, breite, lochdurchmesser) {
     }
 }
 
+module Fuss() {
+    difference() {
+        union() {
+            translate([0, 0, 0]) cylinder(d=20, h=5, $fn=32);
+            translate([0, 0, 5]) cylinder(d1=20, d2=12, h=5, $fn=32);
+        }
+        translate([0, 0, -1]) cylinder(d=4, h=12, $fn=32);
+        translate([0, 0, 10-3.2-0.1]) cylinder(d=7.66+0.2, h=3.2+0.2, $fn=6);
+    }
+}
+
 spreizwinkel = 45;
 filamentrollendurchmesser = 155;
 filamentrollenbreite = 38.6;
@@ -44,17 +55,35 @@ color("springgreen") translate([0, 0, filamentrollendurchmesser/2+hoehe_unterkan
 x = sin(spreizwinkel)*(filamentrollendurchmesser/2+skateboardrollendurchmesser/2);
 for(i=[-1, 1]) {
     translate([i*x, 33, hoehe_unterkante+filamentrollendurchmesser/2-cos(spreizwinkel)*(filamentrollendurchmesser/2+skateboardrollendurchmesser/2)]) 
-        rotate([-90, 0, 0]) 
+        rotate([-90, 0, 0]) {
             Skateboardrolle(skateboardrollendurchmesser, skateboardrollenbreite, skateboardrolle_innendurchmesser, skateboardrolle_ueberhang);
+            //color("green") translate([0, 0, 0]) cylinder(d=8, h=40, $fn=8);
+            difference() {
+                union() {
+                    translate([0, 0, skateboardrolle_ueberhang-0.2]) cylinder(d=skateboardrolle_innendurchmesser+2, h=0.2, $fn=32);
+                    cylinder(d1=skateboardrollendurchmesser-25, d2=15, h=skateboardrolle_ueberhang-0.2, $fn=64);
+                    translate([0, 0, -5]) cylinder(d=skateboardrollendurchmesser-25, h=5, $fn=64);
+                }
+                translate([0, 0, -6]) cylinder(d=skateboardrolle_innendurchmesser, h=skateboardrollenbreite+7, $fn=32);
+                translate([0, 0, -6]) rotate([0, 0, 60/2]) cylinder(d=14.38+0.2, h=6.5+0.1+5, $fn=6);
+            }
+        }
     translate([i*sin(spreizwinkel)*(filamentrollendurchmesser/2+kugellagerdurchmesser/2), 0, hoehe_unterkante+filamentrollendurchmesser/2-cos(spreizwinkel)*(filamentrollendurchmesser/2+kugellagerdurchmesser/2)]) 
         rotate([-90, 0, 0]) {
             Kugellager(kugellagerdurchmesser, kugellagerbreite, kugellager_innendurchmesser);
             difference() {
                 union() {
-                    translate([0, 0, -5]) cylinder(d=kugellagerdurchmesser+3, h=5, $fn=32);
-                    translate([0, 0, kugellagerbreite]) cylinder(d=kugellagerdurchmesser+3, h=5, $fn=32);
+                    translate([0, 0, -5]) cylinder(d=kugellagerdurchmesser+3, h=5-0.2, $fn=32);
+                    translate([0, 0, -0.2]) cylinder(d=kugellager_innendurchmesser+1, h=0.2, $fn=32);
+                    translate([0, 0, kugellagerbreite]) cylinder(d=kugellager_innendurchmesser+1, h=0.2, $fn=32);
+                    translate([0, 0, kugellagerbreite+0.2]) cylinder(d=kugellagerdurchmesser+3, h=5+-0.2, $fn=32);
+                    translate([0, 0, kugellagerbreite+5]) cylinder(d1=kugellagerdurchmesser+3, d2=10, h=3.2-1-0.2, $fn=32);
                 }
                 translate([0, 0, -6]) cylinder(d=kugellager_innendurchmesser, h=12+kugellagerbreite, $fn=32);
+                translate([0, 0, kugellagerbreite+4]) rotate([0, 0, 60/2]) cylinder(d=7.66+0.2, h=3.2+0.1, $fn=6);
             }
         }
+    translate([i*90, -10, 0]) Fuss();
+    translate([i*40, 30, 0]) Fuss();
+    translate([i*40, 90, 0]) Fuss();
 }
