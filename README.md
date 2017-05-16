@@ -1,7 +1,7 @@
 # Tarantula-Tuning
 3D parts for tuning the Tevo Tarantula
 
-First you need a Filament holder. This one uses skateboard-hweels and ballbearings.
+First you need a Filament holder. This one uses skateboard-wheels and ballbearings.
 
 For printing PLA a cooling system is useful.
 
