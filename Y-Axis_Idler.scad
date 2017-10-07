@@ -24,7 +24,7 @@ module idler_right() {
                 translate([-4-19, 61, 38.5]) rotate([0, 90, 0]) cylinder(d=43, h=19, $fn=64);
             }
             translate([-6.4, 61, 38.5]) rotate([0, 90, 0]) cylinder(d=11, h=21.4, $fn=32);
-            translate([-13.6, 61, 38.5]) rotate([0, 90, 0]) cylinder(d=7.8, h=28.4, $fn=32);
+            translate([-13.6, 61, 38.5]) rotate([0, 90, 0]) cylinder(d=8.2, h=28.4, $fn=32);
         }
         translate([-24, 31, 17]) cube([20, 30, 10]);
         translate([-24, 31, 17]) cube([20, 20, 30]);
