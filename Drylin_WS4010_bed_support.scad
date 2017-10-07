@@ -11,6 +11,7 @@ module bed_support() {
                     translate([i*60/2, j*(220/2-(29-16)/2-40)+j*k*-16, -1]) cylinder(d=5, h=7, $fn=res);
                 }
             }
+            translate([47, 61+10*i, -1]) cylinder(d=4, h=10, $fn=res);
         }
         hull() {
             for(i=[-1, 1]) {
