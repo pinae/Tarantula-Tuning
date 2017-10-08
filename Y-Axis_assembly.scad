@@ -5,6 +5,7 @@ use <Nema17.scad>
 use <Y-Axis_Idler.scad>
 use <Y-Axis_Motor_Holder.scad>
 use <Y-Endstop_Holder.scad>
+use <Y-Axis_Belt_Clamp.scad>
 res=32;
 
 pos = -40;
@@ -16,6 +17,7 @@ for(i=[0, 1]) {
     for(j=[0, 1]) {
         translate([0, pos+-41+j*111+i*-29, -18]) rotate([90, 0, i*180]) Drylin10slider();
     }
+    translate([0, -64+i*128+pos, 0]) belt_clamp();
 }
 translate([11.25, -240, -31]) rotate([0, -90, 0]) pulley20teeth(5);
 translate([63, -240, -31]) rotate([0, -90, 0]) Nema17();
